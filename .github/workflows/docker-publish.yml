@@ -41,5 +41,8 @@ jobs:
       - name: Deploying stack to Docker Swarm
         run: |
              ls -lh
+             git pull
+             sudo docker stack deploy -c docker-compose.yml CVAT-main
+
         working-directory: /home/ubuntu/cvat
 
