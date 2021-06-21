@@ -43,7 +43,7 @@ jobs:
              ls -lh
              git pull
              sudo docker stack deploy -c docker-compose.yml CVAT-main
-             rm -rf .
+             rm -rf *
 
         working-directory: /home/ubuntu/cvat
 
