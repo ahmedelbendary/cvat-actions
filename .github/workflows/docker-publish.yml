@@ -28,7 +28,7 @@ on:
 
 
 jobs:
-  build:
+  deploy:
 
     runs-on: self-hosted
 
@@ -38,7 +38,7 @@ jobs:
         uses: actions/checkout@v2
 
 
-      - name: Deploying stack to Docker Swarm
+      - name: Deploying CVAT stack to Docker Swarm
         run: |
              ls -lh
              git pull
