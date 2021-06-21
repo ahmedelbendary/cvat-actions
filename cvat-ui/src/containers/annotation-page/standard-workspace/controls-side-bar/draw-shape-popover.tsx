@@ -23,7 +23,6 @@ interface DispatchToProps {
         objectType: ObjectType,
         points?: number,
         rectDrawingMethod?: RectDrawingMethod,
-        cuboidDrawingMethod?: CuboidDrawingMethod,
     ): void;
 }
 
@@ -43,7 +42,6 @@ function mapDispatchToProps(dispatch: any): DispatchToProps {
             objectType: ObjectType,
             points?: number,
             rectDrawingMethod?: RectDrawingMethod,
-            cuboidDrawingMethod?: CuboidDrawingMethod,
         ): void {
             dispatch(
                 rememberObject({
@@ -52,7 +50,6 @@ function mapDispatchToProps(dispatch: any): DispatchToProps {
                     activeLabelID: labelID,
                     activeNumOfPoints: points,
                     activeRectDrawingMethod: rectDrawingMethod,
-                    activeCuboidDrawingMethod: cuboidDrawingMethod,
                 }),
             );
         },
@@ -130,7 +127,7 @@ class DrawShapePopoverContainer extends React.PureComponent<Props, State> {
             crosshair: [ShapeType.RECTANGLE, ShapeType.CUBOID].includes(shapeType),
         });
 
-        onDrawStart(shapeType, selectedLabelID, objectType, numberOfPoints, rectDrawingMethod, cuboidDrawingMethod);
+        onDrawStart(shapeType, selectedLabelID, objectType, numberOfPoints, rectDrawingMethod);
     }
 
     private onChangeRectDrawingMethod = (event: RadioChangeEvent): void => {

@@ -5,7 +5,7 @@
 import av
 import json
 import os
-from abc import ABC, abstractmethod, abstractproperty
+from abc import ABC, abstractmethod
 from collections import OrderedDict
 from contextlib import closing
 from PIL import Image
@@ -327,10 +327,6 @@ class _ManifestManager(ABC):
     def index(self):
         return self._index
 
-    @abstractproperty
-    def data(self):
-        pass
-
 class VideoManifestManager(_ManifestManager):
     def __init__(self, manifest_path):
         super().__init__(manifest_path)
@@ -380,22 +376,6 @@ class VideoManifestManager(_ManifestManager):
         meta_info.validate_seek_key_frames()
         return meta_info
 
-    @property
-    def video_name(self):
-        return self['properties']['name']
-
-    @property
-    def video_resolution(self):
-        return self['properties']['resolution']
-
-    @property
-    def video_length(self):
-        return self['properties']['length']
-
-    @property
-    def data(self):
-        return [self.video_name]
-
 #TODO: add generic manifest structure file validation
 class ManifestValidator:
     def validate_base_info(self):
@@ -439,7 +419,7 @@ class VideoManifestValidator(VideoManifestManager):
             # not all videos contain information about numbers of frames
             frames = video_stream.frames
             if frames:
-                assert frames == self.video_length, "The uploaded manifest does not match the video"
+                assert frames == self['properties']['length'], "The uploaded manifest does not match the video"
                 return
 
 class ImageManifestManager(_ManifestManager):
@@ -473,7 +453,3 @@ class ImageManifestManager(_ManifestManager):
         meta_info = DatasetImagesReader(sources=sources, **kwargs)
         meta_info.create()
         return meta_info
-
-    @property
-    def data(self):
-        return [f"{image['name']}{image['extension']}" for _, image in self]
