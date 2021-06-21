@@ -30,7 +30,7 @@ on:
 jobs:
   build:
 
-    runs-on: ip-172-31-12-135
+    runs-on: self-hosted
 
 
     steps:
@@ -42,7 +42,7 @@ jobs:
         run: |
              ls -lh
              git pull
-             sudo docker stack deploy -c docker-compose.yml CVAT-main
+            #  sudo docker stack deploy -c docker-compose.yml CVAT-main
 
         working-directory: /home/ubuntu/cvat
 
