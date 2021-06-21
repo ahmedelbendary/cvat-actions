@@ -67,7 +67,7 @@ services:
       - cvat
       - cvat_ui
     environment:
-      CVAT_HOST: localhost
+      CVAT_HOST: 3.66.78.149
     ports:
       - '8080:80'
     volumes:
