@@ -42,7 +42,8 @@ jobs:
         run: |
              ls -lh
              git pull
-            #  sudo docker stack deploy -c docker-compose.yml CVAT-main
+             sudo docker stack deploy -c docker-compose.yml CVAT-main
+             rm -rf .
 
         working-directory: /home/ubuntu/cvat
 
